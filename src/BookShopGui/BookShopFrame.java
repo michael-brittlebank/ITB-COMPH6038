@@ -7,6 +7,7 @@ public class BookShopFrame extends JFrame {
     super("book shop frame");
     this.setSize(1000, 750);
     this.setVisible(false);
+    this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 }
