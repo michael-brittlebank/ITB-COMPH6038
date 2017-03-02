@@ -35,3 +35,10 @@ public class BookShopApplication {
     frame.setVisible(true);
   }
 }
+
+
+/*
+https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
+https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html
+http://stackoverflow.com/questions/9919230/disable-user-edit-in-jtable
+ */
