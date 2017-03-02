@@ -1,4 +1,4 @@
-/*
+package BookShopLogic;/*
 
 You need to create a class Book which has variables that reflect the 3 fields in the database: bookName, authorName, and price; the class should provide a constructor that takes in 3 parameters for the 3 fields, and appropriate setters and getters for each of the fields. In addition, you should also override the toString method which has the following signature: public String toString(){};
 

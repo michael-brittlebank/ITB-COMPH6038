@@ -1,22 +1,17 @@
 package BookShopTabs;
 
 import BookShopGui.BookShopTab;
+import BookShopLogic.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class GetBooks extends BookShopTab {
 
-  DefaultTableModel model = new DefaultTableModel();
-  JTable table = new JTable(model){
-    public boolean isCellEditable(int row, int column) {
-      return false;
-    }
-  };
+  private DefaultTableModel model = new DefaultTableModel();
 
   public GetBooks(){
     this.setLabel("Get Books");
@@ -24,7 +19,7 @@ public class GetBooks extends BookShopTab {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-    //refresh button
+//refresh button
     JButton refreshButton = new JButton("Refresh Data");
     refreshButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     refreshButton.addActionListener(new ActionListener() {
@@ -35,12 +30,18 @@ public class GetBooks extends BookShopTab {
     });
     panel.add(refreshButton, SwingConstants.CENTER);
 
-// Create a couple of columns
+    JTable table = new JTable(model){
+      public boolean isCellEditable(int row, int column) {
+        return false;
+      }
+    };
+
+//create column headers
     model.addColumn("Name");
     model.addColumn("Author");
     model.addColumn("Price");
 
-// Append a row
+//get initial table data
     populateTableRows();
 
     JScrollPane scrollPane = new JScrollPane(table);
@@ -52,13 +53,11 @@ public class GetBooks extends BookShopTab {
 
   private void populateTableRows(){
     model.getDataVector().removeAllElements();
-    Random r = new Random();
-    int rangeMin = 0;
-    int rangeMax = 100;
-    double randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-    model.addRow(new Object[]{"Hamlet", "Shakespeare","$"+randomValue});
-    randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-    model.addRow(new Object[]{"Macbeth", "Shakespeare","$"+randomValue});
+    BookQueries queries = new BookQueries();
+    for(Book book:queries.getBooks()){
+      model.addRow(new Object[]{book.getBookName(), book.getAuthorName(),"€"+book.getPrice()});
+    }
+    queries.closeConnection();
     model.fireTableDataChanged();
   }
 }
