@@ -29,7 +29,7 @@ public class BookQueries {
     try{
       connection = DriverManager.getConnection(url + database, userName, password);
 //      updateStatement = connection.prepareStatement("UPDATE contact SET email = ? WHERE (firstName = ? AND lastName = ?)");
-//      insertStatement = connection.prepareStatement("INSERT INTO contact (firstName, lastName, email, phoneNo)" + "VALUES (?, ?, ?, ?)");
+      insertStatement = connection.prepareStatement("INSERT INTO book (bookName, authorName, price)" + "VALUES (?, ?, ?)");
 //      deleteStatement = connection.prepareStatement("DELETE FROM contact WHERE (email = ?)");
       getStatement = connection.prepareStatement("SELECT bookName,authorName,price FROM book ");
     }
@@ -60,7 +60,15 @@ public class BookQueries {
   }
 
   public void insertBook(Book newBook){
-
+    try{
+      insertStatement.setString(1, newBook.getBookName());
+      insertStatement.setString(2, newBook.getAuthorName());
+      insertStatement.setString(3, String.valueOf(newBook.getPrice()));
+      insertStatement.executeUpdate();
+    }
+    catch(SQLException e){
+      e.printStackTrace();
+    }
   }
 
   public void deleteBook(String bookName){

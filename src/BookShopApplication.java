@@ -19,10 +19,10 @@ public class BookShopApplication {
   public static void main(String[] args){
     BookShopFrame frame = new BookShopFrame();
     BookShopTabbedPane tabbedPane = new BookShopTabbedPane();
-    GetBooks getBooks = new GetBooks();
-    UpdateBook updateBook = new UpdateBook();
-    InsertBook insertBook = new InsertBook();
-    DeleteBook deleteBook = new DeleteBook();
+    GetBooksTab getBooks = new GetBooksTab();
+    UpdateBookTab updateBook = new UpdateBookTab();
+    InsertBookTab insertBook = new InsertBookTab();
+    DeleteBookTab deleteBook = new DeleteBookTab();
 
     //add tabs to tabbed pane
     tabbedPane.addTab("Display All Books", getBooks);

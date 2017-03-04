@@ -9,11 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GetBooks extends BookShopTab {
+public class GetBooksTab extends BookShopTab {
 
   private DefaultTableModel model = new DefaultTableModel();
 
-  public GetBooks(){
+  public GetBooksTab(){
     this.setLabel("Get Books");
 
     JPanel panel = new JPanel();

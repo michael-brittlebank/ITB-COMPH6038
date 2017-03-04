@@ -2,8 +2,8 @@ package BookShopTabs;
 
 import BookShopGui.BookShopTab;
 
-public class UpdateBook extends BookShopTab {
-  public UpdateBook(){
+public class UpdateBookTab extends BookShopTab {
+  public UpdateBookTab(){
     this.setLabel("Update Book");
   }
 }
