@@ -1,8 +1,4 @@
-package BookShopLogic;/*
-
-You need to create a class Book which has variables that reflect the 3 fields in the database: bookName, authorName, and price; the class should provide a constructor that takes in 3 parameters for the 3 fields, and appropriate setters and getters for each of the fields. In addition, you should also override the toString method which has the following signature: public String toString(){};
-
-    */
+package BookShopLogic;
 
 import java.text.NumberFormat;
 
@@ -50,7 +46,7 @@ public class Book {
   }
 
   public String toString(){
-    return "The book "+this.bookName+" by "+this.authorName+" costs €"+this.price;
+    return "The book "+this.getBookName()+" by "+this.getAuthorName()+" costs "+this.getFormattedPrice();
   }
 
 }
