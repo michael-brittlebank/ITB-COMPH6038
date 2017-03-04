@@ -1,6 +1,6 @@
 package BookShopLogic;
 
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Book {
 
@@ -28,7 +28,7 @@ public class Book {
   }
 
   public String getFormattedPrice(){
-    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    DecimalFormat currencyFormat = new DecimalFormat("###,###,###.00");
     return "€"+currencyFormat.format(this.price);
   }
 
