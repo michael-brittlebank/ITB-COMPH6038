@@ -4,6 +4,8 @@ You need to create a class Book which has variables that reflect the 3 fields in
 
     */
 
+import java.text.NumberFormat;
+
 public class Book {
 
   private String bookName;
@@ -29,9 +31,14 @@ public class Book {
     return this.price;
   }
 
+  public String getFormattedPrice(){
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    return "€"+currencyFormat.format(this.price);
+  }
+
   //setters
   public void setBookName(String bookName){
-     this.bookName = bookName;
+    this.bookName = bookName;
   }
 
   public void setAuthorName(String authorName){
