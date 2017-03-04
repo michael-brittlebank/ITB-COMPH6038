@@ -62,7 +62,6 @@ public class InsertBookTab extends BookShopTab {
   }
 
   private void insertBook(){
-    BookQueries queries = new BookQueries();
     String bookName = bookNameInput.getText();
     String bookAuthor = bookAuthorInput.getText();
     String stringBookPrice = bookPriceInput.getText();
@@ -72,6 +71,7 @@ public class InsertBookTab extends BookShopTab {
       try {
         double bookPrice = Double.parseDouble(stringBookPrice);
         Book newBook = new Book(bookName, bookAuthor, bookPrice);
+        BookQueries queries = new BookQueries();
         queries.insertBook(newBook);
         queries.closeConnection();
         bookNameInput.setText("");

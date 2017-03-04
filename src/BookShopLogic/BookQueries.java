@@ -30,7 +30,7 @@ public class BookQueries {
       connection = DriverManager.getConnection(url + database, userName, password);
 //      updateStatement = connection.prepareStatement("UPDATE contact SET email = ? WHERE (firstName = ? AND lastName = ?)");
       insertStatement = connection.prepareStatement("INSERT INTO book (bookName, authorName, price)" + "VALUES (?, ?, ?)");
-//      deleteStatement = connection.prepareStatement("DELETE FROM contact WHERE (email = ?)");
+      deleteStatement = connection.prepareStatement("DELETE FROM book WHERE (bookName = ?)");
       getStatement = connection.prepareStatement("SELECT bookName,authorName,price FROM book ");
     }
     catch(SQLException e){
@@ -71,8 +71,15 @@ public class BookQueries {
     }
   }
 
-  public void deleteBook(String bookName){
-
+  public int deleteBook(String bookName){
+    try{
+      deleteStatement.setString(1, bookName);
+      return deleteStatement.executeUpdate();
+    }
+    catch(SQLException e){
+      e.printStackTrace();
+      return 0;
+    }
   }
 
   public void closeConnection(){
