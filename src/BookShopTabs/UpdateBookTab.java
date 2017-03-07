@@ -11,26 +11,33 @@ import java.awt.event.ActionListener;
 
 public class UpdateBookTab extends BookShopTab {
 
+  //local variables
   private JTextField bookNameInput;
   private JTextField bookPriceInput;
 
+  /**
+   * Constructor for the update book tab
+   */
   public UpdateBookTab(){
+    //create main GUI elements
     this.setLabel("Update Book");
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    JPanel subPanel = new JPanel(new FlowLayout());
+    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
     JButton submitButton = new JButton("Update Book");
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //add listener to submit button
     submitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         updateBook();
       }
     });
-    JPanel subPanel = new JPanel(new FlowLayout());
-    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
+
     int textFieldWidth = 250;
     int textFieldHeight = 30;
-
+    //create input fields
     bookNameInput = new JTextField();
     bookNameInput.setPreferredSize(new Dimension(textFieldWidth,textFieldHeight));
     JPanel bookNamePanel = new JPanel(new BorderLayout());
@@ -43,6 +50,7 @@ public class UpdateBookTab extends BookShopTab {
     bookPricePanel.setBorder(new TitledBorder("Price"));
     bookPricePanel.add(bookPriceInput);
 
+    //add GUI elements to containers
     subPanel.add(bookNamePanel);
     subPanel.add(bookPricePanel);
     panel.add(subPanel);
@@ -51,6 +59,9 @@ public class UpdateBookTab extends BookShopTab {
     this.add(panel, BorderLayout.CENTER);
   }
 
+  /**
+   * Submit button listener to update book price by name
+   */
   private void updateBook(){
     String bookName = bookNameInput.getText();
     String stringBookPrice = bookPriceInput.getText();
@@ -65,7 +76,7 @@ public class UpdateBookTab extends BookShopTab {
           bookPriceInput.setText("");
           JOptionPane.showMessageDialog(null, "Book Successfully Updated", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
-          JOptionPane.showMessageDialog(null, "A book with the name \""+bookName+"\" was not found", "Unable to Delete", JOptionPane.WARNING_MESSAGE);
+          JOptionPane.showMessageDialog(null, "A book with the name \""+bookName+"\" was not found", "Unable to Update", JOptionPane.WARNING_MESSAGE);
         }
       } catch(NumberFormatException exception){
         JOptionPane.showMessageDialog(null, "Please enter a valid number for price", "Invalid Input", JOptionPane.ERROR_MESSAGE);

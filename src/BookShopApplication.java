@@ -3,9 +3,16 @@ import BookShopTabs.*;
 
 public class BookShopApplication {
 
+  /**
+   * Main method for running the application
+   * @param args String[]
+   */
   public static void main(String[] args){
+    //create main GUI elements
     BookShopFrame frame = new BookShopFrame();
     BookShopTabbedPane tabbedPane = new BookShopTabbedPane();
+
+    //create tabs
     GetBooksTab getBooks = new GetBooksTab();
     UpdateBookTab updateBook = new UpdateBookTab();
     InsertBookTab insertBook = new InsertBookTab();
@@ -22,10 +29,3 @@ public class BookShopApplication {
     frame.setVisible(true);
   }
 }
-
-
-/*
-https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
-https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html
-http://stackoverflow.com/questions/9919230/disable-user-edit-in-jtable
- */

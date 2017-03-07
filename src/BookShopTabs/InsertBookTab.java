@@ -12,27 +12,34 @@ import java.awt.event.ActionListener;
 
 public class InsertBookTab extends BookShopTab {
 
+  //local variables
   private JTextField bookNameInput;
   private JTextField bookAuthorInput;
   private JTextField bookPriceInput;
 
+  /**
+   * Constructor for the insert book tab
+   */
   public InsertBookTab(){
+    //create main GUI elements
     this.setLabel("Insert Book");
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    JPanel subPanel = new JPanel(new FlowLayout());
+    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
     JButton submitButton = new JButton("Add New Book");
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //add listener to submit button
     submitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         insertBook();
       }
     });
-    JPanel subPanel = new JPanel(new FlowLayout());
-    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
+
     int textFieldWidth = 250;
     int textFieldHeight = 30;
-
+    //create input fields
     bookNameInput = new JTextField();
     bookNameInput.setPreferredSize(new Dimension(textFieldWidth,textFieldHeight));
     JPanel bookNamePanel = new JPanel(new BorderLayout());
@@ -51,6 +58,7 @@ public class InsertBookTab extends BookShopTab {
     bookPricePanel.setBorder(new TitledBorder("Price"));
     bookPricePanel.add(bookPriceInput);
 
+    //add GUI elements to containers
     subPanel.add(bookNamePanel);
     subPanel.add(bookAuthorPanel);
     subPanel.add(bookPricePanel);
@@ -61,6 +69,9 @@ public class InsertBookTab extends BookShopTab {
 
   }
 
+  /**
+   * Submit button listener to insert book
+   */
   private void insertBook(){
     String bookName = bookNameInput.getText();
     String bookAuthor = bookAuthorInput.getText();

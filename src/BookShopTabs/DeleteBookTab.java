@@ -11,29 +11,37 @@ import java.awt.event.ActionListener;
 
 public class DeleteBookTab extends BookShopTab {
 
+  //local variables
   private JTextField bookNameInput;
 
+  /**
+   * Constructor for the delete book tab
+   */
   public DeleteBookTab(){
+    //create main GUI elements
     this.setLabel("Delete Book");
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    JPanel subPanel = new JPanel(new FlowLayout());
+    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
     JButton submitButton = new JButton("Delete Book");
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //add listener to submit button
     submitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         deleteBook();
       }
     });
-    JPanel subPanel = new JPanel(new FlowLayout());
-    subPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
 
+    //create input fields
     bookNameInput = new JTextField();
     bookNameInput.setPreferredSize(new Dimension(250,30));
     JPanel bookNamePanel = new JPanel(new BorderLayout());
     bookNamePanel.setBorder(new TitledBorder("Book Name"));
     bookNamePanel.add(bookNameInput);
 
+    //add GUI elements to containers
     subPanel.add(bookNamePanel);
     panel.add(subPanel);
     panel.add(submitButton);
@@ -41,6 +49,9 @@ public class DeleteBookTab extends BookShopTab {
     this.add(panel, BorderLayout.CENTER);
   }
 
+  /**
+   * Submit button listener to delete book
+   */
   private void deleteBook(){
     String bookName = bookNameInput.getText();
     if (bookName.isEmpty()) {
