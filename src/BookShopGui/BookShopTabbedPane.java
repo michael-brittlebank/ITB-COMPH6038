@@ -8,6 +8,6 @@ public class BookShopTabbedPane extends JTabbedPane {
    * Constructor for tab pane container
    */
   public BookShopTabbedPane(){
-
+    //available for future customization
   }
 }
