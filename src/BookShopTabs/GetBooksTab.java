@@ -53,11 +53,9 @@ public class GetBooksTab extends BookShopTab {
 
   private void populateTableRows(){
     model.getDataVector().removeAllElements();
-    BookQueries queries = new BookQueries();
-    for(Book book:queries.getBooks()){
+    for(Book book:BookQueries.getBooks()){
       model.addRow(new Object[]{book.getBookName(), book.getAuthorName(),book.getFormattedPrice()});
     }
-    queries.closeConnection();
     model.fireTableDataChanged();
   }
 }

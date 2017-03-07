@@ -59,10 +59,7 @@ public class UpdateBookTab extends BookShopTab {
     } else {
       try {
         double bookPrice = Double.parseDouble(stringBookPrice);
-        BookQueries queries = new BookQueries();
-        int result = queries.updateBook(bookName,bookPrice);
-        System.out.println(result);
-        queries.closeConnection();
+        int result = BookQueries.updateBook(bookName,bookPrice);
         if (result > 0) {
           bookNameInput.setText("");
           bookPriceInput.setText("");

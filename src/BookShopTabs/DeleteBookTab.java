@@ -46,9 +46,7 @@ public class DeleteBookTab extends BookShopTab {
     if (bookName.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Please enter a book name", "Insufficient Information", JOptionPane.ERROR_MESSAGE);
     } else {
-      BookQueries queries = new BookQueries();
-      int result = queries.deleteBook(bookName);
-      queries.closeConnection();
+      int result = BookQueries.deleteBook(bookName);
       if (result > 0){
         bookNameInput.setText("");
         JOptionPane.showMessageDialog(null, "Book Successfully Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);

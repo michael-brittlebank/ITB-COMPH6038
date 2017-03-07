@@ -5,33 +5,15 @@ import java.util.ArrayList;
 
 public class BookQueries {
 
-  private Connection connection;
-  private PreparedStatement updateStatement;
-  private PreparedStatement insertStatement;
-  private PreparedStatement deleteStatement;
-  private PreparedStatement getStatement;
+  private static String url = "jdbc:mysql://localhost:3306/";
+  private static String database = "bookshop";
+  private static String userName = "root";
+  private static String password = "mysql";
 
-  public BookQueries() {
-    String url = "jdbc:mysql://localhost:3306/";
-    String database = "bookshop";
-    String userName = "root";
-    String password = "mysql";
-
-    try{
-      connection = DriverManager.getConnection(url + database, userName, password);
-      updateStatement = connection.prepareStatement("UPDATE book SET price = ? WHERE bookName = ?");
-      insertStatement = connection.prepareStatement("INSERT INTO book (bookName, authorName, price) VALUES (?, ?, ?)");
-      deleteStatement = connection.prepareStatement("DELETE FROM book WHERE bookName = ?");
-      getStatement = connection.prepareStatement("SELECT bookName,authorName,price FROM book ");
-    }
-    catch(SQLException e){
-      e.printStackTrace();
-    }
-  }
-
-  public ArrayList<Book> getBooks(){
+  public static ArrayList<Book> getBooks(){
     ArrayList<Book> bookList = new ArrayList<>();
-    try {
+    try(Connection connection = DriverManager.getConnection(url + database, userName, password)){
+      PreparedStatement getStatement = connection.prepareStatement("SELECT bookName,authorName,price FROM book ");
       ResultSet resultSet = getStatement.executeQuery();
       while(resultSet.next()){
         String bookName = resultSet.getString("bookName");
@@ -46,8 +28,9 @@ public class BookQueries {
     return bookList;
   }
 
-  public int updateBook(String bookName, double price){
-    try{
+  public static int updateBook(String bookName, double price){
+    try(Connection connection = DriverManager.getConnection(url + database, userName, password)){
+      PreparedStatement updateStatement = connection.prepareStatement("UPDATE book SET price = ? WHERE bookName = ?");
       updateStatement.setString(1, String.valueOf(price));
       updateStatement.setString(2, bookName);
       return updateStatement.executeUpdate();
@@ -58,8 +41,9 @@ public class BookQueries {
     }
   }
 
-  public void insertBook(Book newBook){
-    try{
+  public static void insertBook(Book newBook){
+    try(Connection connection = DriverManager.getConnection(url + database, userName, password)){
+      PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO book (bookName, authorName, price) VALUES (?, ?, ?)");
       insertStatement.setString(1, newBook.getBookName());
       insertStatement.setString(2, newBook.getAuthorName());
       insertStatement.setString(3, String.valueOf(newBook.getPrice()));
@@ -70,23 +54,15 @@ public class BookQueries {
     }
   }
 
-  public int deleteBook(String bookName){
-    try{
+  public static int deleteBook(String bookName){
+    try(Connection connection = DriverManager.getConnection(url + database, userName, password)){
+      PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM book WHERE bookName = ?");
       deleteStatement.setString(1, bookName);
       return deleteStatement.executeUpdate();
     }
     catch(SQLException e){
       e.printStackTrace();
       return 0;
-    }
-  }
-
-  public void closeConnection(){
-    try {
-      connection.close();
-    }
-    catch(SQLException e){
-      e.printStackTrace();
     }
   }
 }

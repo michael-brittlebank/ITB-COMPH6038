@@ -71,9 +71,7 @@ public class InsertBookTab extends BookShopTab {
       try {
         double bookPrice = Double.parseDouble(stringBookPrice);
         Book newBook = new Book(bookName, bookAuthor, bookPrice);
-        BookQueries queries = new BookQueries();
-        queries.insertBook(newBook);
-        queries.closeConnection();
+        BookQueries.insertBook(newBook);
         bookNameInput.setText("");
         bookAuthorInput.setText("");
         bookPriceInput.setText("");
